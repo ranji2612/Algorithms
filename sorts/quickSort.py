@@ -1,7 +1,5 @@
-def quickSort(A):
-	if len(A) < 2:
-		return A
-	#Take the first element as pivot
+def partition(A):
+    #Take the first element as pivot
 	l=len(A)
 	p = A[l-1]
 	
@@ -16,5 +14,11 @@ def quickSort(A):
 			j+=1
 	A[l-1] = A[j]
 	A[j] = p
-	print '---',A[:j],A[j+1:]
-	return quickSort(A[:j]) + [p] + quickSort(A[j+1:])
+	print 'pivot ',p,' Start - pivot ',A[:j],' Pivot-End ',A[j+1:]
+	return A,j
+
+def quickSort(A):
+	if len(A) < 2:
+		return A
+	A,j = partition(A)
+	return quickSort(A[:j]) + [A[j]] + quickSort(A[j+1:])
